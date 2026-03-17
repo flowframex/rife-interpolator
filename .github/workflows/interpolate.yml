@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y ffmpeg git python3 python3-pip
-        pip install torch torchvision numpy opencv-python tqdm
+        pip install torch torchvision numpy opencv-python tqdm scikit-video imageio
 
     - name: Clone RIFE
       run: |
