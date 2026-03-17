@@ -1,0 +1,37 @@
+name: RIFE 3x Interpolation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  interpolate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y ffmpeg git python3 python3-pip
+        pip install torch torchvision numpy opencv-python tqdm
+
+    - name: Clone RIFE
+      run: |
+        git clone https://github.com/hzwer/ECCV2022-RIFE.git
+
+    - name: Extract frames
+      run: |
+        mkdir frames
+        ffmpeg -i input.mp4 frames/frame_%06d.png
+
+    - name: Run RIFE 3x interpolation
+      run: |
+        python3 ECCV2022-RIFE/inference_video.py --exp=3 --video=input.mp4 --output=output.mp4
+
+    - name: Upload result
+      uses: actions/upload-artifact@v4
+      with:
+        name: interpolated-video
+        path: output.mp4
