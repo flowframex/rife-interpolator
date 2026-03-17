@@ -1,4 +1,3 @@
-```yaml
 name: RIFE 3x Interpolation
 
 on:
@@ -42,4 +41,3 @@ jobs:
       with:
         name: interpolated-video
         path: output.mp4
-```
