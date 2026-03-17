@@ -21,10 +21,6 @@ jobs:
       run: |
         git clone https://github.com/hzwer/ECCV2022-RIFE.git
 
-    - name: Extract frames
-      run: |
-        mkdir frames
-        ffmpeg -i input.mp4 frames/frame_%06d.png
 
     - name: Run RIFE 3x interpolation
       run: |
