@@ -21,8 +21,12 @@ jobs:
       run: |
         git clone https://github.com/hzwer/ECCV2022-RIFE.git
 
+    - name: Download RIFE model
+      run: |
+        mkdir train_log
+        wget https://github.com/hzwer/ECCV2022-RIFE/releases/download/v1.0/flownet.pkl -O train_log/flownet.pkl
 
-    - name: Run RIFE 3x interpolation
+    - name: Run interpolation
       run: |
         python3 ECCV2022-RIFE/inference_video.py --exp=3 --video=input.mp4 --output=output.mp4
 
